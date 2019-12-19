@@ -105,7 +105,7 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Override
 	public PageInfo<Article> getListByChannelIdAndCateId(Integer channelId, Integer cateId, Integer pageNum) {
-		PageHelper.startPage(pageNum, 1);
+		PageHelper.startPage(pageNum, 3);
 		List<Article> articleList = articleDao.selectListByChannelIdAndCateId(channelId,cateId);
 		 return new PageInfo<>(articleList);
 	}
