@@ -129,8 +129,8 @@
     </div>
   </div>
 </div>
-<script type="text/javascript" src="/public/js/checkbox.js?v1.00"></script>
 
+<script src="/public/js/checkbox.js?v1.00"></script>
 <script>
 	function query(){
 		var params = $("form").serialize();
@@ -151,36 +151,17 @@
 	}
 	
 	function delAlert(){
-		var ids = "";
-		$('input[name="chk_list"]').each(function(index,value){
-			if($(value).prop("checked") == true){
-				if(ids==""){
-					ids+=$(value).val();
-				}else{
-					ids+=","+$(value).val();
-				}
-			}
-		});
-		alert(ids);
+		var ids = getCheckboxIds();
 		if(ids==""){
 			$(".alert").html("请选择要删除的文章");
 			$(".alert").show();
 			return;
 		}
-		$('#delModal').modal('show');
+		$('#delModal').modal('show')
 	}
 	
 	function batchDel(){
-		var ids = "";
-		$('input[name="chk_list"]').each(function(index,value){
-			if($(value).prop("checked") == true){
-				if(ids==""){
-					ids+=$(value).val();
-				}else{
-					ids+=","+$(value).val();
-				}
-			}
-		});
+		var ids = getCheckboxIds();
 		console.log(ids);
 		$.post("/article/delByIds",{ids:ids},function(res){
 			if(res.result){

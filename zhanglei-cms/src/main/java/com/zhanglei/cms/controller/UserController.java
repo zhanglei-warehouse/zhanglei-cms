@@ -72,11 +72,11 @@ public class UserController {
 			session.setAttribute(CmsConstant.UserSessionKey, userInfo);
 			return JsonResult.sucess();
 		}
-		return JsonResult.fail(500, "未知错误");
+		return JsonResult.fail(1000, "用户名或密码错误");
 	}
 	/**
 	 * @Title: logout   
-	 * @Description: TODO(描述这个方法的作用)   
+	 * @Description: 退出   
 	 * @param: @param response
 	 * @param: @param session
 	 * @param: @return      
@@ -154,11 +154,18 @@ public class UserController {
 	 * @return: String      
 	 * @throws
 	 */
-	@RequestMapping(value="settings",method=RequestMethod.POST)
 	@ResponseBody
-	public JsonResult settings(User user) {
-		userService.update(user);
-		return JsonResult.sucess();
+	@RequestMapping("settingsUpdate")
+	public JsonResult settings(User user,HttpSession session) {
+		//修改用户信息
+		boolean result = userService.update(user);
+		if(result) {
+			//跟新session中的用户信息
+			User userInfo = userService.getById(user.getId());
+			session.setAttribute(CmsConstant.UserSessionKey, userInfo);
+			return JsonResult.sucess();
+		}
+		return JsonResult.fail(100002, "修改失败");
 	}
 	
 	@RequestMapping("comment")
@@ -179,9 +186,5 @@ public class UserController {
 		model.addAttribute("channelList", channelList);
 		return "user/article";
 	}
-	
-	
-	
-	
 	
 }

@@ -9,6 +9,15 @@
 		</div>
 	</div>
 	<div class="form-group row">
+		<label for="inputEmail3" class="col-sm-2 col-form-label">我的头像</label>
+		<div class="col-sm-10">
+			<jsp:include page="../common/uploadImg.jsp">
+				<jsp:param value="headimg" name="feildName"/>
+				<jsp:param value="${user.headimg }" name="feildValue"/>
+			</jsp:include>
+		</div>
+	</div>	
+	<div class="form-group row">
 		<label for="inputEmail3" class="col-sm-2 col-form-label">我的生日</label>
 		<div class="col-sm-3">
 			<input type="date" name="birthday" value="${user.birthdayStr }">
@@ -43,7 +52,8 @@
 <script type="text/javascript">
 	$("#gender").val("${gender}");
 	function save() {
-		$.post("/user/settings",$("form").serialize(),function(res){
+		console.log($("form").serialize());
+		$.post("/user/settingsUpdate",$("form").serialize(),function(res){
 			if(res.result){
 				$(".alert").html("设置成功");
 				$(".alert").show();

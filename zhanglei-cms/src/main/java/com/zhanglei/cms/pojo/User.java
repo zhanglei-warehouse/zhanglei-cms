@@ -6,150 +6,160 @@ import java.util.Date;
 import com.zhanglei.util.DateUtil;
 
 public class User implements Serializable{
-	 /**   
-		 * @Fields serialVersionUID : TODO(这个变量表示什么)   
-		 */  
-		private static final long serialVersionUID = 1L;
+	/**   
+	 * @Fields serialVersionUID : TODO(这个变量表示什么)   
+	 */  
+	private static final long serialVersionUID = 1L;
 
-		private Integer id;
+	private Integer id;
 
-	    private String username;
+    private String username;
 
-	    private String password;
+    private String password;
 
-	    private String nickname;
+    private String nickname;
 
-	    private Date birthday;
+    private Date birthday;
 
-	    private Integer gender;
+    private Integer gender;
 
-	    private Integer locked;
+    private Integer locked;
 
-	    private int score;
+    private int score;
 
-	    private String role;
+    private String role;
 
-	    private String url;
+    private String url;
 
-	    private Date createTime;
+    private Date createTime;
 
-	    private Date updateTime;
-	   
-	    public boolean isAdmin() {
-	    	return "1".equals(getRole());
-	    }
-	    
-	    public String getBirthdayStr() {
-	    	if(this.getBirthday()==null) {
-	    		return null;
-	    	}
-	        return DateUtil.format(this.getBirthday());
-	    }
+    private Date updateTime;
+    
+    private String headimg;
+   
+    public boolean isAdmin() {
+    	return "1".equals(getRole());
+    }
+    
+    public String getBirthdayStr() {
+    	if(this.getBirthday()==null) {
+    		return null;
+    	}
+        return DateUtil.format(this.getBirthday());
+    }
 
-	    @Override
-		public String toString() {
-			return "User [id=" + id + ", username=" + username + ", password=" + password + ", nickname=" + nickname
-					+ ", birthday=" + birthday + ", gender=" + gender + ", locked=" + locked + ", score=" + score
-					+ ", role=" + role + ", url=" + url + ", createTime=" + createTime + ", updateTime=" + updateTime + "]";
-		}
+    @Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", nickname=" + nickname
+				+ ", birthday=" + birthday + ", gender=" + gender + ", locked=" + locked + ", score=" + score
+				+ ", role=" + role + ", url=" + url + ", createTime=" + createTime + ", updateTime=" + updateTime + "]";
+	}
 
-		public Integer getId() {
-	        return id;
-	    }
+	public Integer getId() {
+        return id;
+    }
 
-	    public void setId(Integer id) {
-	        this.id = id;
-	    }
+    public String getHeadimg() {
+		return headimg;
+	}
 
-	    public String getUsername() {
-	        return username;
-	    }
+	public void setHeadimg(String headimg) {
+		this.headimg = headimg;
+	}
 
-	    public void setUsername(String username) {
-	        this.username = username == null ? null : username.trim();
-	    }
+	public void setId(Integer id) {
+        this.id = id;
+    }
 
-	    public String getPassword() {
-	        return password;
-	    }
+    public String getUsername() {
+        return username;
+    }
 
-	    public void setPassword(String password) {
-	        this.password = password == null ? null : password.trim();
-	    }
+    public void setUsername(String username) {
+        this.username = username == null ? null : username.trim();
+    }
 
-	    public String getNickname() {
-	        return nickname;
-	    }
+    public String getPassword() {
+        return password;
+    }
 
-	    public void setNickname(String nickname) {
-	        this.nickname = nickname == null ? null : nickname.trim();
-	    }
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
+    }
 
-	    public Date getBirthday() {
-	        return birthday;
-	    }
-	    
-	    
+    public String getNickname() {
+        return nickname;
+    }
 
-	    public void setBirthday(Date birthday) {
-	        this.birthday = birthday;
-	    }
+    public void setNickname(String nickname) {
+        this.nickname = nickname == null ? null : nickname.trim();
+    }
 
-	    public Integer getGender() {
-	        return gender;
-	    }
+    public Date getBirthday() {
+        return birthday;
+    }
+    
+    
 
-	    public void setGender(Integer gender) {
-	        this.gender = gender;
-	    }
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
 
-	    public Integer getLocked() {
-	        return locked;
-	    }
+    public Integer getGender() {
+        return gender;
+    }
 
-	    public void setLocked(Integer locked) {
-	        this.locked = locked;
-	    }
+    public void setGender(Integer gender) {
+        this.gender = gender;
+    }
 
-	    
+    public Integer getLocked() {
+        return locked;
+    }
 
-	    public int getScore() {
-			return score;
-		}
+    public void setLocked(Integer locked) {
+        this.locked = locked;
+    }
 
-		public void setScore(int score) {
-			this.score = score;
-		}
+    
 
-		public String getRole() {
-	        return role;
-	    }
+    public int getScore() {
+		return score;
+	}
 
-	    public void setRole(String role) {
-	        this.role = role == null ? null : role.trim();
-	    }
+	public void setScore(int score) {
+		this.score = score;
+	}
 
-	    public String getUrl() {
-	        return url;
-	    }
+	public String getRole() {
+        return role;
+    }
 
-	    public void setUrl(String url) {
-	        this.url = url == null ? null : url.trim();
-	    }
+    public void setRole(String role) {
+        this.role = role == null ? null : role.trim();
+    }
 
-	    public Date getCreateTime() {
-	        return createTime;
-	    }
+    public String getUrl() {
+        return url;
+    }
 
-	    public void setCreateTime(Date createTime) {
-	        this.createTime = createTime;
-	    }
+    public void setUrl(String url) {
+        this.url = url == null ? null : url.trim();
+    }
 
-	    public Date getUpdateTime() {
-	        return updateTime;
-	    }
+    public Date getCreateTime() {
+        return createTime;
+    }
 
-	    public void setUpdateTime(Date updateTime) {
-	        this.updateTime = updateTime;
-	    }
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 }
