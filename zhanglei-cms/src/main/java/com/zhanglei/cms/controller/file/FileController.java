@@ -27,11 +27,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-/**
- * @Description: kindeditor 文件上传管理
- * @author: zhanggm1002
- * @date: 2019年12月12日 下午8:55:16
- */
 @Controller
 @RequestMapping("/file/")
 public class FileController {

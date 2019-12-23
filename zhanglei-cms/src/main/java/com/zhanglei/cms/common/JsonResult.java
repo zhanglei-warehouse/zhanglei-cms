@@ -2,11 +2,6 @@ package com.zhanglei.cms.common;
 
 import java.io.Serializable;
 
-/**
- * @Description:定义json接口的统一返回结果  
- * @author: zhanggm1002
- * @date:   2019年12月13日 下午3:05:33
- */
 public class JsonResult implements Serializable{
 	/**   
 	 * @Fields serialVersionUID : TODO(这个变量表示什么)   
