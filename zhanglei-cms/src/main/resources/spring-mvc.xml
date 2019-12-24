@@ -28,9 +28,19 @@
 			<bean class="com.zhanglei.cms.common.AuthAdminInterceptor"></bean>
 		</mvc:interceptor>
 		<mvc:interceptor>
-			<mvc:mapping path="/user/**"/>
+			<!-- <mvc:mapping path="/user/**"/>
+			<mvc:exclude-mapping path="/user/login"/>
+			<mvc:exclude-mapping path="/user/register"/> -->
+			<mvc:mapping path="/**"/>
+			<mvc:exclude-mapping path="/"/>
+			<mvc:exclude-mapping path="/admin/**"/>
+			<mvc:exclude-mapping path="/**/**.html"/>
+			<mvc:exclude-mapping path="/**/**.css"/>
+			<mvc:exclude-mapping path="/**/**.js"/>
 			<mvc:exclude-mapping path="/user/login"/>
 			<mvc:exclude-mapping path="/user/register"/>
+			<mvc:exclude-mapping path="/comment/list"/>
+			<mvc:exclude-mapping path="/tousu/**"/>
 			<bean class="com.zhanglei.cms.common.AuthUserInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
