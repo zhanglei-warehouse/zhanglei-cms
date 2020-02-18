@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zhanglei.cms.common.CmsConstant;
 import com.zhanglei.cms.common.JsonResult;
+import com.zhanglei.cms.dao.ArticleRepository;
 import com.zhanglei.cms.pojo.Article;
 import com.zhanglei.cms.pojo.Category;
 import com.zhanglei.cms.pojo.Channel;
@@ -26,7 +27,11 @@ import com.zhanglei.cms.service.ArticleService;
 public class ArticleController {
 	@Autowired
 	private ArticleService articleService;
+	@Autowired
+	private ArticleRepository articleRepository;
 	private Logger logger = LoggerFactory.getLogger(getClass());
+	
+	
 	
 	/**
 	 * @Title: add   
@@ -97,6 +102,11 @@ public class ArticleController {
 		}
 		//删除
 		boolean result = articleService.delByIds(ids);
+		//删除卡夫卡中数据
+		String[] split = ids.split(",");
+		for (String string : split) {
+			articleRepository.deleteById(Integer.valueOf(string));
+		}
 		if(result) {
 			return JsonResult.sucess();
 		}

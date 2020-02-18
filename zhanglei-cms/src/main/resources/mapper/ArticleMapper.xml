@@ -71,7 +71,7 @@
 		select count(1) from cms_article
 	</select>
 	
-	<insert id="insert" parameterType="com.zhanglei.cms.pojo.Article">
+	<insert id="insert" parameterType="com.zhanglei.cms.pojo.Article" useGeneratedKeys="true" keyProperty="article.id" keyColumn="id">
 		insert into cms_article (title, picture, channel_id, 
 	      category_id, user_id, hits, 
 	      hot, status, deleted, 
@@ -125,4 +125,8 @@
 	      deleted = 1
 	    where id in (${ids})
 	</update>
+	<update id="addHits">
+		update cms_article set hits=hits+1 where id = #{id}
+	</update>
+	
 </mapper>

@@ -18,7 +18,7 @@
 			expression="org.springframework.stereotype.Controller" />
 
 	</context:component-scan>
-
+	
 	<!--2、 指定外部属性文件的位置 -->
 	<context:property-placeholder
 		location="classpath:db.properties" />
@@ -70,6 +70,8 @@
 			<tx:method name="*" propagation="REQUIRED" />
 		</tx:attributes>
 	</tx:advice>
+	
+	
 	<!-- 7、配置aop -->
 	<aop:config>
 		<!-- 配置切点表达式 -->
@@ -84,6 +86,20 @@
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<!-- basePackage :mapper接口所在的包 -->
 		<property name="basePackage" value="com.zhanglei.cms.dao"></property>
-
 	</bean>
+	
+	<!-- spring线程池配置 -->
+	<bean id="taskExcutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="5"></property>
+		<property name="maxPoolSize" value="10"></property>
+		<property name="queueCapacity" value="25"></property>
+		<property name="keepAliveSeconds" value="3000"></property>
+	</bean>
+	
+	
+	
+	<import resource="es.xml"/>
+	<import resource="spring-kafka-consumer.xml"/>
+	<import resource="spring-kafka-producer.xml"/>
+	<import resource="spring-redis.xml"/>
 </beans>

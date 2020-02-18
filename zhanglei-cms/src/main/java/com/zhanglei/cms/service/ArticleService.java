@@ -129,4 +129,9 @@ public interface ArticleService {
 	 * @throws
 	 */
 	List<Article> getNewList(int num);
+	
+	
+	int addHits(String value);
+	
+	int insert(Article article);
 }

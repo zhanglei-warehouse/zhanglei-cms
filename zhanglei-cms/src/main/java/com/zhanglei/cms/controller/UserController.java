@@ -19,8 +19,10 @@ import com.zhanglei.cms.common.CmsMd5Util;
 import com.zhanglei.cms.common.JsonResult;
 import com.zhanglei.cms.pojo.Article;
 import com.zhanglei.cms.pojo.Channel;
+import com.zhanglei.cms.pojo.Shou;
 import com.zhanglei.cms.pojo.User;
 import com.zhanglei.cms.service.ArticleService;
+import com.zhanglei.cms.service.ShouService;
 import com.zhanglei.cms.service.UserService;
 import com.zhanglei.util.StringUtil;
 
@@ -31,7 +33,8 @@ public class UserController {
 	private UserService userService;
 	@Autowired
 	private ArticleService articleService;
-	
+	@Autowired
+	private ShouService shouServiceImpl;
 	/**
 	 * @Title: login   
 	 * @Description: 用户登录界面   
@@ -186,5 +189,26 @@ public class UserController {
 		model.addAttribute("channelList", channelList);
 		return "user/article";
 	}
-	
+	@RequestMapping("shou")
+	public String shou(Shou shou,Model model,HttpSession session,@RequestParam(value="pageNum",defaultValue = "1")int pageNum,@RequestParam(value = "pageSize",defaultValue = "4") int pageSize) {
+		//获取用户id
+		User userInfo = (User) session.getAttribute(CmsConstant.UserSessionKey);
+		shou.setUserId(userInfo.getId());
+		//查询文章
+		PageInfo<Shou> pageInfo = shouServiceImpl.listShou(shou, pageNum);
+		model.addAttribute("pageInfo", pageInfo);
+		List<Shou> list = shouServiceImpl.getShouList(shou);
+		model.addAttribute("list", list);
+		return "user/shou";
+	}
+	@RequestMapping("delete")
+	@ResponseBody
+	public Boolean delete(int id) {
+		int deleteShou = shouServiceImpl.deleteShou(id);
+		if(deleteShou>0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 }

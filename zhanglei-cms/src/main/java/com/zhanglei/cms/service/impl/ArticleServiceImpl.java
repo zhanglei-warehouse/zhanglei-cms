@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zhanglei.cms.dao.ArticleDao;
+import com.zhanglei.cms.dao.ArticleRepository;
 import com.zhanglei.cms.dao.CategoryDao;
 import com.zhanglei.cms.dao.ChannelDao;
 import com.zhanglei.cms.pojo.Article;
@@ -23,7 +24,8 @@ public class ArticleServiceImpl implements ArticleService {
 	private ChannelDao channelDao;
 	@Autowired
 	private CategoryDao categoryDao;
-	
+	@Autowired
+	private ArticleRepository articleRepository;
 	
 	@Override
 	public PageInfo<Article> getPageInfo(Article article, int pageNum, int pageSize) {
@@ -34,6 +36,9 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Override
 	public boolean updateStatus(Integer id, int status) {
+		Article article = articleDao.selectById(id);
+		article.setStatus(1);
+		articleRepository.save(article);
 		return articleDao.updateStatus(id, status)>0;
 	}
 
@@ -62,6 +67,8 @@ public class ArticleServiceImpl implements ArticleService {
 			article.setHits(0);
 			article.setHot(0);
 			articleDao.insert(article);
+			article.setId(article.getId());
+			articleRepository.save(article);
 		}else {
 			article.setUpdated(new Date());
 			articleDao.update(article);
@@ -114,5 +121,22 @@ public class ArticleServiceImpl implements ArticleService {
 	public List<Article> getNewList(int num) {
 		return articleDao.selectNewList(num);
 	}
+
+	
+	@Override 
+	public int addHits(String value) {
+		return articleDao.addHits(value);
+	}
+
+	@Override
+	public int insert(Article article) {
+		return articleDao.insert(article);
+	}
+	 
+
+	
+	
+
+	
 
 }

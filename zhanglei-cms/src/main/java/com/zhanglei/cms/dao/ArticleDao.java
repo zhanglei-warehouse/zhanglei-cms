@@ -137,4 +137,21 @@ public interface ArticleDao {
 	 * @throws
 	 */
 	List<Article> selectNewList(@Param("num") int num);
+	
+	/**
+	 * @return 
+	 * @Title: addHits   
+	 * @Description: 添加浏览量   
+	 * @param: @param num
+	 * @param: @return      
+	 * @return: void      
+	 * @throws
+	 */
+	int addHits(String id);
+	
+	
+	
+	
+	
+	
 }

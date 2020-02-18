@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
+import com.zhanglei.cms.dao.ArticleRepository;
 import com.zhanglei.cms.pojo.Article;
 import com.zhanglei.cms.pojo.Channel;
 import com.zhanglei.cms.pojo.User;
@@ -21,7 +22,6 @@ import com.zhanglei.cms.service.UserService;
 public class AdminController {
 	@Autowired
 	private UserService userService;
-	
 	@Autowired
 	private ArticleService articleService;
 	
